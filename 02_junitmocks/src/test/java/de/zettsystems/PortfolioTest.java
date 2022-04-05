@@ -56,7 +56,7 @@ class PortfolioTest {
 
 
     @Test
-    void shouldHandleExcpetions() {
+    void shouldHandleExceptions() {
         // Given
         Stock sap = createStock("123", "SAP", SAP_QUANTITY);
         Portfolio testee = new Portfolio();

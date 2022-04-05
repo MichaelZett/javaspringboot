@@ -2,12 +2,19 @@ package de.zettsystems.fizzbuzz.objoriented;
 
 
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SmartKidTest {
     private SmartKid testee = new SmartKid("Smart");
+
+    @ParameterizedTest
+    @CsvSource(value = {"1, 1", "3, Fizz","45, FizzBuzz" , "10, Buzz"})
+    void shouldSayCsv(int number, String result) {
+        assertThat(testee.decideWord(number)).isEqualTo(result);
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 4, 7, 14, 16, 97})
