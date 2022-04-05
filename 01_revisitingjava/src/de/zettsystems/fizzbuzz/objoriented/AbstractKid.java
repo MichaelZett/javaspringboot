@@ -3,7 +3,7 @@ package de.zettsystems.fizzbuzz.objoriented;
 public abstract class AbstractKid implements Kid {
     private String name;
 
-    public AbstractKid(String name) {
+    protected AbstractKid(String name) {
         super();
         this.name = name;
     }

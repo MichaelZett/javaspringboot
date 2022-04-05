@@ -6,7 +6,7 @@ public enum Word {
 	final int number;
 	final String word;
 
-	private Word(int number, String word) {
+	Word(int number, String word) {
 		this.number = number;
 		this.word = word;
 	}

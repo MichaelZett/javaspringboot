@@ -1,5 +1,6 @@
 package de.zettsystems.fizzbuzz.func;
 
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,8 +14,23 @@ public class FizzBuzzGame {
      * 1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16, ..., 97, 98, Fizz, Buzz
      */
     public static void main(String[] args) {
-        String result = IntStream.rangeClosed(1, 100).mapToObj(FizzBuzzGame::determineWord).collect(Collectors.joining(","));
+//        String result = IntStream.rangeClosed(1, 100).mapToObj(FizzBuzzGame::determineWord).collect(Collectors.joining(","));
+        String result = IntStream.rangeClosed(1, 100).mapToObj(determineWordFunction()).collect(Collectors.joining(","));
         System.out.println(result);
+    }
+
+    private static IntFunction<String> determineWordFunction() {
+        return i -> {
+            if (i % 3 == 0 && i % 5 == 0) {
+                return "FizzBuzz";
+            } else if (i % 3 == 0) {
+                return "Fizz";
+            } else if (i % 5 == 0) {
+                return "Buzz";
+            } else {
+                return "" + i;
+            }
+        };
     }
 
     private static String determineWord(int i) {

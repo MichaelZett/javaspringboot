@@ -1,10 +1,15 @@
 package de.zettsystems.fizzbuzz.objoriented;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Classroom {
-	private List<Kid> kids = new LinkedList<>();
+	private List<Kid> kids;
+
+	public Classroom() {
+		super();
+		kids = new ArrayList<>();
+	}
 
 	public void enter(Kid kid) {
 		kids.add(kid);
