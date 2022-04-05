@@ -1,6 +1,9 @@
 package de.zettsystems.fizzbuzz;
 
 public class FizzBuzzGame {
+    static final int FIZZ_NUMBER = 3;
+    static final int BUZZ_NUMBER = 5;
+    static final int LIMIT = 100;
 
     /**
      * Children are sitting in a classroom. The first kid says 1 and then one after the other continues counting.
@@ -10,20 +13,24 @@ public class FizzBuzzGame {
      * 1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16, ..., 97, 98, Fizz, Buzz
      */
     public static void main(String[] args) {
-        for (int i = 1; i <= 100; i++) {
-            if (i % 3 == 0 && i % 5 == 0) {
-                System.out.print("FizzBuzz");
-            } else if (i % 3 == 0) {
-                System.out.print("Fizz");
-            } else if (i % 5 == 0) {
-                System.out.print("Buzz");
-            } else {
-                System.out.print(i);
+        for (int i = 1; i <= LIMIT; i++) {
+            String result = determineWord(i);
+            if (i < LIMIT) {
+                result = result + ", ";
             }
+            System.out.print(result);
+        }
+    }
 
-            if (i < 100) {
-                System.out.print(", ");
-            }
+    static String determineWord(int i) {
+        if (i % FIZZ_NUMBER == 0 && i % BUZZ_NUMBER == 0) {
+            return "FizzBuzz";
+        } else if (i % FIZZ_NUMBER == 0) {
+            return "Fizz";
+        } else if (i % BUZZ_NUMBER == 0) {
+            return "Buzz";
+        } else {
+            return "" + i;
         }
     }
 
