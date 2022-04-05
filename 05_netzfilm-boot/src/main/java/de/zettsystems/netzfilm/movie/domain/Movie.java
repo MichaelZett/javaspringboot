@@ -1,9 +1,7 @@
 package de.zettsystems.netzfilm.movie.domain;
 
-
 import lombok.Getter;
 import lombok.ToString;
-
 
 import java.time.LocalDate;
 import java.util.UUID;

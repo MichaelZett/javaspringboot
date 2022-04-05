@@ -2,6 +2,7 @@ package de.zettsystems.netzfilm.movie.domain;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -14,7 +15,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     @Override
     public List<Movie> findAll() {
-        return REPO.values().stream().collect(Collectors.toList());
+        return new ArrayList<>(REPO.values());
     }
 
     @Override
