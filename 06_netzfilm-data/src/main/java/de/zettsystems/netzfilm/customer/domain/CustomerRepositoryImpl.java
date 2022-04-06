@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
@@ -14,7 +13,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public List<Customer> findAll() {
-        return REPO.values().stream().collect(Collectors.toList());
+        return List.copyOf(REPO.values());
     }
 
     @Override
