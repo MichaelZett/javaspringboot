@@ -4,7 +4,6 @@ package de.zettsystems.netzfilm.movie.domain;
 import lombok.Getter;
 import lombok.ToString;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -35,5 +34,9 @@ public class Movie {
         this();
         this.title = title;
         this.releaseDate = releaseDate;
+    }
+
+    public void updateTitle(String title) {
+        this.title = title;
     }
 }
