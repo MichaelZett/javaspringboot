@@ -20,9 +20,9 @@ public class Rent {
     @Version
     private long version;
     private UUID uuid;
-    @OneToOne
+    @ManyToOne
     private Copy copy;
-    @OneToOne
+    @ManyToOne
     private Customer customer;
     private BigDecimal amount;
     private LocalDate start;
