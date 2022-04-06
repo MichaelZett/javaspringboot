@@ -15,7 +15,7 @@ public class LoadCustomerData {
     public Customer createCustomer() {
         customerRepository.save(new Customer("Petra", "Meyer", LocalDate.of(1963, 7, 11)));
         customerRepository.save(new Customer("Frank", "Schuhmacher", LocalDate.of(1976, 4, 3)));
-        Customer customer = new Customer("Wiebke", "Müller", LocalDate.of(1984, 11, 23));
+        Customer customer = new Customer("Wiebke", "Müller", LocalDate.of(2014, 11, 23));
         customer = customerRepository.save(customer);
         return customer;
     }

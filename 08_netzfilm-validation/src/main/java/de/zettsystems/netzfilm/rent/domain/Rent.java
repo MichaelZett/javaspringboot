@@ -11,14 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.UUID;
 
 @Entity
@@ -71,6 +72,12 @@ public class Rent {
         this.amount = amount;
         this.start = start;
         this.end = end;
+    }
+
+    @AssertTrue(message = "We don't charge that much for children!")
+    public boolean isCorrectAgeAmount() {
+        final Period age = Period.between(customer.getBirthdate(), LocalDate.now());
+        return age.getYears() > 18 || amount.compareTo(BigDecimal.ONE) < 0;
     }
 
 }
