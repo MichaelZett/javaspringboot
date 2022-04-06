@@ -1,13 +1,9 @@
-package de.zettsystems.netzfilm.movie.domain;
+package de.zettsystems.netzfilm.customer.domain;
 
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -16,7 +12,8 @@ import java.util.UUID;
 @Entity
 @Getter
 @ToString
-public class Movie {
+public class Customer {
+
     @Id
     @GeneratedValue
     @NotNull
@@ -29,21 +26,26 @@ public class Movie {
     @Column(unique = true, updatable = false, nullable = false)
     private UUID uuid;
     @NotBlank
-    @Column(nullable = false)
-    private String title;
+    private String name;
+    @NotBlank
+    private String lastName;
     @NotNull
-    @Column(nullable = false)
-    private LocalDate releaseDate;
+    private LocalDate birthdate;
 
     //needed for jpa
-    protected Movie() {
+    protected Customer() {
         super();
         this.uuid = UUID.randomUUID();
     }
 
-    public Movie(String title, LocalDate releaseDate) {
+    public Customer(String name, String lastName, LocalDate birthdate) {
         this();
-        this.title = title;
-        this.releaseDate = releaseDate;
+        updateData(name, lastName, birthdate);
+    }
+
+    public void updateData(String name, String lastName, LocalDate birthdate) {
+        this.name = name;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
     }
 }

@@ -1,5 +1,6 @@
 package de.zettsystems.netzfilm.movie.domain;
 
+
 import lombok.Getter;
 import lombok.ToString;
 
