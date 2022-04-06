@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.Valid;
@@ -35,12 +36,12 @@ public class Rent {
     @NotNull
     @Column(unique = true, updatable = false, nullable = false)
     private UUID uuid;
-    @OneToOne
+    @ManyToOne
     @NotNull
     @Valid
     @JoinColumn(updatable = false, nullable = false)
     private Copy copy;
-    @OneToOne
+    @ManyToOne
     @NotNull
     @Valid
     @JoinColumn(updatable = false, nullable = false)
