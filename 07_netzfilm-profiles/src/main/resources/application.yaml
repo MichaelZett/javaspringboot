@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: Netzfilm
+  datasource:
+    hikari:
+      # https://vladmihalcea.com/why-you-should-always-use-hibernate-connection-provider_disables_autocommit-for-resource-local-jpa-transactions/
+      # in combination with jpa.properties.hibernate.connection.provider_disables_autocommit: true
+      auto-commit: false
+  jpa:
+    open-in-view: false
+    # Auto configured by spring-boot - we do not want to use that in production
+    #    generate-ddl: true
+    #    # per default
+    #    hibernate:
+    #      ddl-auto: create-drop #none, validate, update,
+    properties:
+      hibernate:
+        connection:
+          provider_disables_autocommit: true
+        temp:
+          # https://stackoverflow.com/questions/10075081/hibernate-slow-to-acquire-postgres-connection
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          time_zone: UTC

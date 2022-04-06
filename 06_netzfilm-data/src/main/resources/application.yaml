@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: Netzfilm
+  # enable h2-web-console
+  h2:
+    console:
+      enabled: true
+
+  #  spring-boot recently switched to a uuid-name for the db - so we set it hard
+  datasource:
+    url: 'jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE' # 'jdbc:h2:file:/data/demo;DB_CLOSE_ON_EXIT=FALSE'
+    #  Auto configured by spring-boot
+    #    driverClassName: org.h2.Driver
+    #    username: sa
+    #    password:
+    hikari:
+      # https://vladmihalcea.com/why-you-should-always-use-hibernate-connection-provider_disables_autocommit-for-resource-local-jpa-transactions/
+      # in combination with jpa.properties.hibernate.connection.provider_disables_autocommit: true
+      auto-commit: false
+
+  # Auto configured by spring-boot - we do not want to use that in production
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        connection:
+          provider_disables_autocommit: true
+        temp:
+          # https://stackoverflow.com/questions/10075081/hibernate-slow-to-acquire-postgres-connection
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          time_zone: UTC
+  # Auto configured by spring-boot - we do not want to use that in production
+#    generate-ddl: true
+#    # per default
+#    hibernate:
+#      ddl-auto: create-drop #none, validate, update,
