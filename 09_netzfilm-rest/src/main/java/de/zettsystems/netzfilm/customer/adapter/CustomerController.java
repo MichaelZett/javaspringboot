@@ -29,6 +29,7 @@ class CustomerController {
     @Operation(summary = "Find all Customers", description = "List of all Customers in Netzfilm.")
     @GetMapping
     @Transactional(readOnly = true)
+//    @ResponseBody not needed here because of RESTController
     public List<CustomerData> findAll() {
         return repository.findAll().stream().map(this::mapCustomer).collect(Collectors.toList());
     }
@@ -36,12 +37,12 @@ class CustomerController {
     @Operation(summary = "Find a specific Customer", description = "Find a specific Customer with the given uuid.")
     @GetMapping(value = "/{uuid}")
     @Transactional(readOnly = true)
-    public CustomerData findByUuid(@PathVariable("uuid") UUID uuid) {
+    public CustomerData findByUuid(@PathVariable("uuid") UUID uuid /*, @RequestParam("keyName") String keyName*/) {
         final Customer customer = repository.findByUuid(uuid).orElseThrow();
         return mapCustomer(customer);
     }
 
-    @Operation(summary = "Creae a Customer", description = "Create a specific Customer with the given data.")
+    @Operation(summary = "Create a Customer", description = "Create a specific Customer with the given data.")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Map<String, UUID> create(@Valid @RequestBody CreateCustomerData resource) {
