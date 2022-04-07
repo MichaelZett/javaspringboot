@@ -18,6 +18,7 @@ public class LoadMovieData {
     private final MovieDbExternalService movieDbExternalService;
 
     public void createMovies() {
+        movieDbExternalService.getMoviesCatalog().forEach(System.out::println);
         final List<MovieDbEntry> movieDbEntries = movieDbExternalService.orderNewMovies(new MovieDbOrder(List.of("A new hope", "The Empire strikes back", "Return of the Jedi")));
         movieDbEntries.stream().map(LoadMovieData::toMovieEntity).forEach(movieRepository::save);
     }

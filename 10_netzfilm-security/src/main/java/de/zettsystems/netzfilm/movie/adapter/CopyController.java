@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import java.util.UUID;
 class CopyController {
     private final CopyService copyService;
 
+    @Secured("ROLE_ADMIN")
     @Operation(summary = "Create copy", description = "Create the given number of copies for the given movie. ")
     @PostMapping()
     public Map<String, List<UUID>> createCopies(@Valid @RequestBody CreateCopyData data) {

@@ -3,6 +3,7 @@ package de.zettsystems.order.movie.adapter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,16 @@ class MovieDbController {
         LOG.info("Got an order {}", order);
         final List<MovieDbEntry> delivery = order.getTitles().stream().map(MovieDbController::toMovieDbEntry).collect(Collectors.toList());
         LOG.info("Prepared a delivery {}", delivery);
+        final Map<String, List<MovieDbEntry>> body = Map.of("delivery", delivery);
+        return ResponseEntity.of(Optional.of(body));
+    }
+
+    @GetMapping
+    public ResponseEntity<Map<String,List<MovieDbEntry>>> catalog() {
+        LOG.info("Someone wants the catalog.");
+        final List<MovieDbEntry> delivery = List.of(toMovieDbEntry("Alien 1"),
+                toMovieDbEntry("Alien 2"), toMovieDbEntry("Alien 3"));
+        LOG.info("Prepared the catalog {}", delivery);
         final Map<String, List<MovieDbEntry>> body = Map.of("delivery", delivery);
         return ResponseEntity.of(Optional.of(body));
     }

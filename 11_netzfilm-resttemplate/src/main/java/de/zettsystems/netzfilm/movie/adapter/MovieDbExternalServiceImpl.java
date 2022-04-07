@@ -5,7 +5,6 @@ import de.zettsystems.netzfilm.movie.values.MovieDbDelivey;
 import de.zettsystems.netzfilm.movie.values.MovieDbEntry;
 import de.zettsystems.netzfilm.movie.values.MovieDbOrder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,9 +15,16 @@ import java.util.List;
 @Service
 public class MovieDbExternalServiceImpl implements MovieDbExternalService {
     private final RestTemplate movieDbRestTemplate;
+
     @Override
     public List<MovieDbEntry> orderNewMovies(MovieDbOrder order) {
         MovieDbDelivey delivery = movieDbRestTemplate.postForObject("/movie/", order, MovieDbDelivey.class);
+        return delivery.getDelivery();
+    }
+
+    @Override
+    public List<MovieDbEntry> getMoviesCatalog() {
+        MovieDbDelivey delivery = movieDbRestTemplate.getForObject("/movie/", MovieDbDelivey.class);
         return delivery.getDelivery();
     }
 

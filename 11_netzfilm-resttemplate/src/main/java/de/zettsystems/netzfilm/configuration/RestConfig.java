@@ -24,7 +24,7 @@ public class RestConfig {
     private static RestTemplateBuilder setTimeouts(RestTemplateBuilder builder, PropertyResolver propertyResolver) {
         int connectionTimeout = propertyResolver.getProperty("rest.connectionTimeout", Integer.class, DEFAULT_CONNECTION_TIMEOUT_MS);
         int readTimeout = propertyResolver.getProperty("rest.readTimeout", Integer.class, DEFAULT_READ_TIMEOUT_MS);
-        return builder.setReadTimeout(Duration.ofMillis((long) readTimeout))
-                .setConnectTimeout(Duration.ofMillis((long) connectionTimeout));
+        return builder.setReadTimeout(Duration.ofMillis(readTimeout))
+                .setConnectTimeout(Duration.ofMillis(connectionTimeout));
     }
 }
