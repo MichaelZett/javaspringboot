@@ -1,0 +1,35 @@
+version: "3.7"
+
+volumes:
+  mysql_data:
+    driver: local
+
+services:
+  maria_db:
+    image: "mariadb:10.7.3"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: netzfilm
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: geheim
+      MYSQL_ROOT_PASSWORD: geheim
+  keycloak:
+    image: jboss/keycloak
+    restart: on-failure
+    command:
+      - "-b"
+      - "0.0.0.0"
+      - "-Dkeycloak.migration.action=import"
+      - "-Dkeycloak.migration.provider=dir"
+      - "-Dkeycloak.migration.dir=/config/"
+      - "-Dkeycloak.migration.strategy=IGNORE_EXISTING"
+    volumes:
+      - ./config:/config/
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=password
+    ports:
+      - "8081:8080"

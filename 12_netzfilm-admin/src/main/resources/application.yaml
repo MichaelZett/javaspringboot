@@ -1,0 +1,36 @@
+server:
+    port: 9000
+spring:
+    application:
+        name: Order
+    jackson:
+        time-zone: UTC
+        default-property-inclusion: non_null
+        serialization:
+            WRITE_DATES_AS_TIMESTAMPS: false
+        deserialization:
+            READ_UNKNOWN_ENUM_VALUES_AS_NULL: true
+            FAIL_ON_UNKNOWN_PROPERTIES: false
+        generator:
+            WRITE_BIGDECIMAL_AS_PLAIN: true
+    boot:
+        admin:
+            client:
+                url: http://localhost:9100
+management:
+    # enable more information on info
+    info:
+        env:
+            enabled: true
+        java:
+            enabled: true
+    # enable all actuators
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    # enable more information on health
+    endpoint:
+        health:
+            show-details: ALWAYS
+            show-components: ALWAYS
