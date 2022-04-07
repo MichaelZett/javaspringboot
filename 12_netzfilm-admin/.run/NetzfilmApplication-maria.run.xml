@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="NetzfilmApplication" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="de.zettsystems.netzfilm.NetzfilmApplication" />
-    <module name="11_netzfilm-resttemplate" />
+    <module name="12_order-admin" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="de.zettsystems.netzfilm.*" />
